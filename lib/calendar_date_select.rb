@@ -28,7 +28,7 @@ module CalendarDateSelect
 
   class Railtie < ::Rails::Railtie
     rake_tasks do
-      namespace :calendar
+      namespace :calendar do
         desc "Install assets required by calendar_date_select gem"
         task :install do
 
