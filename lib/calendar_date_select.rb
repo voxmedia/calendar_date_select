@@ -33,7 +33,7 @@ module CalendarDateSelect
         task :install do
 
           Files.each do |f|
-            source = File.join(File.dirname(__FILE__), "..", dir)
+            source = File.join(File.dirname(__FILE__), "..", f)
             dest = File.join(Rails.root, f)
             FileUtils.mkdir_p(dest)
             FileUtils.cp(Dir.glob(source+'/*.*'), dest)
