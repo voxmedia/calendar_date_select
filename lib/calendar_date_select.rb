@@ -32,9 +32,9 @@ module CalendarDateSelect
         desc "Install assets required by calendar_date_select gem"
         task :install do
 
-          Files.each do |dir|
-            source = File.dirname(__FILE__) + "/../#{dir}"
-            dest = Rails.root + dir
+          Files.each do |f|
+            source = File.join(File.dirname(__FILE__), "..", dir)
+            dest = File.join(Rails.root, f)
             FileUtils.mkdir_p(dest)
             FileUtils.cp(Dir.glob(source+'/*.*'), dest)
           end
