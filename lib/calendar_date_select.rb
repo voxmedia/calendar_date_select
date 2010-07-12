@@ -5,17 +5,6 @@ require "calendar_date_select/includes_helper.rb"
 require 'rails'
 require 'active_support'
 
-ActiveSupport.on_load(:action_view) do
-  ActionView::Helpers::FormHelper.send(:include, CalendarDateSelect::FormHelpers)
-  ActionView::Base.send(:include, CalendarDateSelect::FormHelpers)
-  ActionView::Base.send(:include, CalendarDateSelect::IncludesHelper)
-  
-  ActionView::Helpers::InstanceTag.class_eval do
-    class << self; alias new_with_backwards_compatibility new; end #TODO: singleton_class.class_eval
-  end
-
-end
-
 module CalendarDateSelect
 
   Files = [
@@ -27,6 +16,17 @@ module CalendarDateSelect
   ]
 
   class Railtie < ::Rails::Railtie
+
+    initializer 'calendardateselect.initialize', :after => :action_view do
+      ActionView::Helpers::FormHelper.send(:include, CalendarDateSelect::FormHelpers)
+      ActionView::Base.send(:include, CalendarDateSelect::FormHelpers)
+      ActionView::Base.send(:include, CalendarDateSelect::IncludesHelper)
+  
+      ActionView::Helpers::InstanceTag.class_eval do
+        class << self; alias new_with_backwards_compatibility new; end #TODO: singleton_class.class_eval
+      end
+    end
+
     rake_tasks do
       namespace :calendar do
         desc "Install assets required by calendar_date_select gem"
