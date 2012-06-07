@@ -381,8 +381,16 @@ CalendarDateSelect.prototype = {
       this.selection_made = true;
     }
     
-    if (!isNaN(parts.get("hour"))) this.selected_date.setHours(parts.get("hour"));
-    if (!isNaN(parts.get("minute"))) this.selected_date.setMinutes( Math.floor_to_interval(parts.get("minute"), this.options.get("minute_interval")) );
+    if (!isNaN(parts.get("hour"))){ 
+      this.selected_date.setHours(parts.get("hour"));
+      this.selection_made = true;
+    }
+
+    if (!isNaN(parts.get("minute"))){ 
+      this.selected_date.setMinutes( Math.floor_to_interval(parts.get("minute"), this.options.get("minute_interval")) );
+      this.selection_made = true;
+    }
+
     if (parts.get("hour") === "" || parts.get("minute") === "") 
       this.setUseTime(false);
     else if (!isNaN(parts.get("hour")) || !isNaN(parts.get("minute")))
