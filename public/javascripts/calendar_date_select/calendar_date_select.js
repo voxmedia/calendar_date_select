@@ -29,6 +29,7 @@ Date.padded2 = function(hour) { var padded2 = parseInt(hour, 10); if (hour < 10)
 Date.prototype.getPaddedMinutes = function() { return Date.padded2(this.getMinutes()); }
 Date.prototype.getAMPMHour = function() { var hour = this.getHours(); return (hour == 0) ? 12 : (hour > 12 ? hour - 12 : hour ) }
 Date.prototype.getAMPM = function() { return (this.getHours() < 12) ? "AM" : "PM"; }
+Date.prototype.getHourForDropdown = function() { return this.getAMPMHour()+ " " + this.getAMPM(); }
 Date.prototype.stripTime = function() { return new Date(this.getFullYear(), this.getMonth(), this.getDate());};
 Date.prototype.daysDistance = function(compare_date) { return Math.round((compare_date - this) / Date.one_day); };
 Date.prototype.toFormattedString = function(include_time){
@@ -209,7 +210,7 @@ CalendarDateSelect.prototype = {
       
       var t = new Date();
       this.hour_select = new SelectBox(buttons_div,
-        blank_time.concat($R(0,23).map(function(x) {t.setHours(x); return $A([t.getAMPMHour()+ " " + t.getAMPM(),x])} )),
+        blank_time.concat($R(0,23).map(function(x) {t.setHours(x); return $A([t.getHourForDropdown(),x])} )),
         { 
           calendar_date_select: this, 
           onchange: function() { this.calendar_date_select.updateSelectedDate( { hour: this.value });},
