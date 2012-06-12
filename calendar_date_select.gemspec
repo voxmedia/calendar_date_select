@@ -12,9 +12,6 @@ Gem::Specification.new do |s|
   s.date = %q{2010-03-29}
   s.description = %q{Calendar date picker for rails}
   s.email = %q{}
-  s.extra_rdoc_files = [
-    "README.txt"
-  ]
   s.files = [
     ".gitignore",
      "History.txt",
