@@ -206,7 +206,8 @@ module CalendarDateSelect::FormHelpers
     end
 
     def calendar_date_select_output(input, image, options = {}, javascript_options = {})
-      out = [input]
+      
+      out = input
       
       if javascript_options[:embedded]
         uniq_id = "cds_placeholder_#{(rand*100000).to_i}"
